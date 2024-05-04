@@ -1,0 +1,27 @@
+{
+  "version": "2.4.1+44",
+  "release_time": "2024-05-04 19:12:24",
+  "release_note": "### 新功能\r\n  - Foo\r\n### Bug 修复\r\n  - Bar\r\n\r",
+  "downloads": {
+    "Android": {
+      "name": "SITLife-v2.4.1+44.apk",
+      "default": "official",
+      "sha256": "dc0905c840fc07542624e86bed139f3c06d8528349405e4a7ed393d4ce40c17c",
+      "url": {
+        "official": "https://g.mysit.life/artifact/latest/SITLife-v2.4.1+44.apk",
+        "github": "https://github.com/Amazefcc233/mimir-test/releases/download/v2.4.1%2B44/SITLife-v2.4.1%2B44.apk",
+        "mirror": "https://mirror.ghproxy.com/https://github.com/Amazefcc233/mimir-test/releases/download/v2.4.1%2B44/SITLife-v2.4.1%2B44.apk"
+      }
+    },
+    "iOS": {
+      "name": "",
+      "default": "official",
+      "sha256": "",
+      "url": {
+        "official": "https://g.mysit.life/artifact/latest/",
+        "github": "",
+        "mirror": "https://mirror.ghproxy.com/"
+      }
+    }
+  }
+}
