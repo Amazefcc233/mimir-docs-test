@@ -1,0 +1,21 @@
+{
+  "version": "2.1.1+16",
+  "release_time": "2023-12-18 19:48:27",
+  "release_note": "",
+  "downloads": {
+    "Android": {
+      "name": "SIT-Life-v2.1.1+16.apk",
+      "url": {
+        "official": "https://github.com/liplum-dev/mimir/releases/download/v2.1.1%2B16/SIT-Life-v2.1.1%2B16.apk",
+        "mirror": "https://mirror.ghproxy.com/https://github.com/liplum-dev/mimir/releases/download/v2.1.1%2B16/SIT-Life-v2.1.1%2B16.apk"
+      }
+    },
+    "iOS": {
+      "name": "",
+      "url": {
+        "official": "",
+        "mirror": "https://mirror.ghproxy.com/"
+      }
+    }
+  }
+}

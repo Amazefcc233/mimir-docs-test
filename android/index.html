@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>获取 小应生活</title>
+    <link rel="icon" href="/static/img/favicon.png">
+    <link rel="stylesheet" href="/static/bootstrap-4.4.1.min.css" crossorigin="anonymous">
+    <style>
+        .navbar {
+            margin-bottom: 30px;
+        }
+
+        #versionInfo .table th {
+            width: 10%;
+        }
+
+        #versionInfoSHA256 {
+            word-break: break-all;
+        }
+
+        html {
+            position: relative;
+            min-height: 100%;
+        }
+        body {
+            margin-bottom: 60px;
+        }
+        .footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 60px;
+        }
+    </style>
+    <script src="/static/marked-11.1.0.min.js"></script>
+    <script async src="https://u.amazefcc233.com/script.js" data-website-id="9d7f25c3-8a50-4c79-af20-6c2411a17962"></script>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">小应生活</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">下载</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!---->
+
+    <main role="main" class="container">
+
+        <h2>最新版本 - Android下载</h2>
+
+        <div id="loadingPlaceholder">
+            <span class="text-secondary">正在获取版本信息...</span>
+        </div>
+
+        <div id="loadingErrorAlert" class="alert alert-danger d-none" role="alert">
+            无法获取版本信息
+        </div>
+
+        <div id="versionInfo" class="card d-none">
+            <div class="card-body">
+                <table class="table table-sm table-hover table-borderless">
+                    <tbody>
+                        <tr>
+                            <th scope="row">文件名</th>
+                            <td id="versionInfoFileName">$fileName</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">版本号</th>
+                            <td id="versionInfoVersion">$version</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">发布时间</th>
+                            <td id="versionInfoReleaseTime">$releaseTime</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">SHA256</th>
+                            <td id="versionInfoSHA256">$sha256</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">更新说明</th>
+                            <td id="versionInfoReleaseNote">$releaseNote</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <a id="versionInfoDownloadBtn1" href="$downloadUrl1" class="btn btn-outline-primary">官方源下载（可能无法下载）</a>
+                <a id="versionInfoDownloadBtn2" href="$downloadUrl2" class="btn btn-outline-success">备用下载链接</a>
+            </div>
+        </div>
+        <p><small>*此页面仅展示最新版本的应用下载渠道。若需下载以往版本，请前往Github的<a href="https://github.com/liplum-dev/mimir/releases">Release</a>页自行下载。</small></p>
+
+    </main>
+
+    <footer class="footer mt-auto py-3">
+        <div class="container">
+            <span class="text-muted">
+                <a href="https://beian.miit.gov.cn/">沪ICP备18042337号-4</a> | Powered by <a href="https://github.com/Amazefcc233/mimir-docs">GitHub Pages</a>.
+            </span>
+        </div>
+    </footer>
+
+    <script>
+        var version = undefined;
+        fetch("/artifact/latest.json", {
+            cache: "no-cache",
+            mode: "cors"
+        })
+            .then(response => response.json())
+            .then(versionInfo => {
+                version = versionInfo.version;
+                document.getElementById("versionInfoVersion").textContent = versionInfo.version;
+                document.getElementById("versionInfoReleaseTime").textContent = versionInfo.release_time;
+                document.getElementById("versionInfoReleaseNote").innerHTML = marked.parse(versionInfo.release_note);
+                if (versionInfo.downloads.Android.name) {
+                    document.getElementById("versionInfoFileName").textContent = versionInfo.downloads.Android.name;
+                    document.getElementById("versionInfoSHA256").textContent = versionInfo.downloads.Android.sha256;
+                    document.getElementById("versionInfoDownloadBtn1").setAttribute("href", versionInfo.downloads.Android.url.official);
+                    document.getElementById("versionInfoDownloadBtn2").setAttribute("href", versionInfo.downloads.Android.url.mirror);
+                } else {
+                    document.getElementById("versionInfoFileName").textContent = "此版本未发布Android安装包";
+                    document.getElementById("versionInfoSHA256").textContent = "(无)";
+                    document.getElementById("versionInfoDownloadBtn1").setAttribute("href", "#");
+                    document.getElementById("versionInfoDownloadBtn1").setAttribute("class", "btn btn-outline-primary disabled");
+                    document.getElementById("versionInfoDownloadBtn2").setAttribute("href", "#");
+                    document.getElementById("versionInfoDownloadBtn2").setAttribute("class", "btn btn-outline-success disabled");
+                }
+                document.getElementById("versionInfo").classList.remove("d-none");
+            })
+            .catch(error => {
+                console.error("Failed to fetch version info: " + error);
+                document.getElementById("loadingErrorAlert").classList.remove("d-none");
+            })
+            .then(() => {
+                document.getElementById("loadingPlaceholder").classList.add("d-none");
+            });
+    </script>
+
+</body>
+
+</html>

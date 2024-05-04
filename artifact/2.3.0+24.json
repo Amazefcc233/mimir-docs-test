@@ -1,0 +1,25 @@
+{
+  "version": "2.3.0+24",
+  "release_time": "2024-03-22 09:52:25",
+  "release_note": "- [新增] APP支持自定义主题色\r\n- [新增] 第二课堂审核中的活动申请目前可被撤销\r\n- [新增] 游戏2048支持临时保存/加载功能\r\n- [新增] 课程表支持增加/编辑/删除课程\r\n- [优化] 课程表颜色功能重写，呈现的颜色更丰富\r\n- [优化] 课程表颜色配置方案“经典”中改进了部分颜色\r\n- [优化] 当设备的储存空间不足时，当前不会再自动重置缓存\r\n- [优化] 其他UI方面及本地化改进\r\n\r",
+  "downloads": {
+    "Android": {
+      "name": "SITLife-v2.3.0+24.apk",
+      "default": "mirror",
+      "sha256": "495c82c1969ace693a1e82a5e893ed268f9681fa43d25ca706da19ecde8d0dc9",
+      "url": {
+        "official": "https://github.com/liplum-dev/mimir/releases/download/v2.3.0%2B24/SITLife-v2.3.0%2B24.apk",
+        "mirror": "https://mirror.ghproxy.com/https://github.com/liplum-dev/mimir/releases/download/v2.3.0%2B24/SITLife-v2.3.0%2B24.apk"
+      }
+    },
+    "iOS": {
+      "name": "",
+      "default": "mirror",
+      "sha256": "",
+      "url": {
+        "official": "",
+        "mirror": "https://mirror.ghproxy.com/"
+      }
+    }
+  }
+}
